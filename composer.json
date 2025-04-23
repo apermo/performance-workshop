@@ -1,0 +1,64 @@
+{
+  "name": "apermo/performance-workshop",
+  "type": "project",
+  "license": "MIT",
+  "description": "",
+  "homepage": "https://christoph-daum.com/performance-workshop/",
+  "authors": [
+    {
+      "name": "Christoph Daum",
+      "email": "me@christoph-daum.de",
+      "homepage": "https://christoph-daum.com"
+    }
+  ],
+  "keywords": [
+    "wordpress", "wordcamp", "workshop", "performance"
+  ],
+  "support": {
+    "issues": "https://github.com/apermo/performance-workshop/issues"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "composer/installers": "^2.2",
+    "vlucas/phpdotenv": "^5.5",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
+    "roots/wordpress": "6.8",
+    "roots/wp-config": "1.0.0",
+    "wpackagist-plugin/ninjafirewall": "^4.5",
+    "wpackagist-plugin/advanced-custom-fields": "^6.0",
+    "yoast/wordpress-seo": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "wpackagist-plugin/query-monitor": "^3.9",
+    "wpackagist-plugin/debug-bar": "^1.1",
+    "wpackagist-plugin/view-admin-as": "^1.8"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  }
+}
