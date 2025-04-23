@@ -41,7 +41,8 @@
     "roave/security-advisories": "dev-latest",
     "wpackagist-plugin/query-monitor": "^3.9",
     "wpackagist-plugin/debug-bar": "^1.1",
-    "wpackagist-plugin/view-admin-as": "^1.8"
+    "wpackagist-plugin/view-admin-as": "^1.8",
+    "wpackagist-plugin/index-wp-mysql-for-speed": "^1.4"
   },
   "config": {
     "optimize-autoloader": true,

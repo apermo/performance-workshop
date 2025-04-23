@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "737a1187433bcb67b423ec15210e291f",
+    "content-hash": "63f7a81e5be7a84d962f75104c893acc",
     "packages": [
         {
             "name": "composer/installers",
@@ -2150,6 +2150,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/debug-bar/"
+        },
+        {
+            "name": "wpackagist-plugin/index-wp-mysql-for-speed",
+            "version": "1.5.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/index-wp-mysql-for-speed/",
+                "reference": "tags/1.5.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/index-wp-mysql-for-speed.1.5.3.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/index-wp-mysql-for-speed/"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
