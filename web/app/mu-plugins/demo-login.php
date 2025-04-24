@@ -7,6 +7,12 @@ Author: Christoph Daum
 Author URI: https://christoph-daum.com
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit();
+}
+
 // Display demo credentials above the login form
 add_action( 'login_form', function () {
 	echo '<div style="margin-bottom: 16px; padding: 10px; background: #f7f7f7; border: 1px solid #ddd;">
