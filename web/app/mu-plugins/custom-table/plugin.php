@@ -65,5 +65,69 @@ GROUP BY
 
 	// Create or update the tables
 	$custom_tables->create_and_update_tables();
+
+	add_filter( 'update_post_metadata', __NAMESPACE__ . '\sync_post_meta', 10, 5 );
+	add_filter( 'delete_post_metadata', __NAMESPACE__ . '\sync_post_meta', 10, 5 );
+
+	// An add to post delete will also be required.
 }
+
 add_action( 'plugins_loaded', __NAMESPACE__ . '\init' );
+
+/**
+ * Syncs the post meta with the custom table.
+ *
+ * @param $check
+ * @param $object_id
+ * @param $meta_key
+ * @param $meta_value
+ * @param $prev_value
+ *
+ * @return bool|null
+ */
+function sync_post_meta( $check, $object_id, $meta_key, $meta_value, $prev_value ): ?bool {
+	switch ( $meta_key ) {
+		default:
+			// In all undefined cases, we just return the check and exit here.
+			return $check;
+
+		case 'post_hide_from_archive':
+			$meta_value = (int) $meta_value;
+			break;
+		case '_user_rate_mean':
+			$meta_value = (float) $meta_value;
+			break;
+	}
+
+	global $wpdb;
+	// Check if there is a row with the post_id in the custom table.
+	$result = $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT 1 FROM {$wpdb->custom_meta} WHERE post_id = %d LIMIT 1",
+			$object_id
+		)
+	);
+
+	if ( empty( $result ) ) {
+		// If there is no row, we insert a new row with the post_id and the meta_value.
+		$wpdb->query(
+			$wpdb->prepare(
+				"INSERT INTO {$wpdb->custom_meta} (post_id, {$meta_key}) VALUES (%d, %s)",
+				$object_id,
+				$meta_value
+			)
+		);
+	} else {
+		// If there is a row, we update the row with the post_id and the meta_value.
+		$wpdb->query(
+			$wpdb->prepare(
+				"UPDATE {$wpdb->custom_meta} SET {$meta_key} = %s WHERE post_id = %d",
+				$meta_value,
+				$object_id
+			)
+		);
+	}
+
+	return $check;
+}
+
