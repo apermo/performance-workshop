@@ -58,6 +58,11 @@ WordPress Coding Standards have a sniff notifying that meta queries are slow and
 we have a slow meta query. We will use query monitor to find this and use a custom table to have the same result but 
 much faster.
 
+Prepared URLs:
+https://performance.ddev.site/artikel/category/bass/ (hide from archive)
+https://performance.ddev.site/artikel/category/keyboard/ (sort by rating)
+https://performance.ddev.site/artikel/category/keyboard/synthesizer/ (both)
+
 
 ### Lesson 6: PHP Sessions and Ninja Firewall
 
