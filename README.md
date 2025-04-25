@@ -11,6 +11,18 @@
 
 In this lesson we will cover the use of xhprof, see the limitations and install and use the xhprof toolset I wrote.
 
+We will find a query similar to this
+```mysql
+SELECT post_id, meta_value 
+FROM wp_postmeta 
+WHERE meta_key = '_wp_attached_file' AND meta_value = '2020/10/2020-08-04_103807.png';
+```
+It originates from `attachment_url_to_postid()` and is used to get the post id from an attachment url.
+This is a very expensive query, since it will the postmeta table is not indexed for this case.
+
+Which in my setup took 5.3s when I added this to the documentation. This query will luckily not be executed in the 
+frontend, but it will slow down the saving process of a post.
+
 ### Lesson 2: Index MySQL for speed
 
 With the data learned from xhprof, we see that there are limitations in the database queries. In this lesson we will
