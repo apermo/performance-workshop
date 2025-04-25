@@ -65,8 +65,31 @@ https://performance.ddev.site/artikel/category/bass/ (hide from archive)
 https://performance.ddev.site/artikel/category/keyboard/ (sort by rating)
 https://performance.ddev.site/artikel/category/keyboard/synthesizer/ (both)
 
+```sql
+INSERT INTO wp_custom_meta (post_id, post_hide_from_archive, _user_rate_mean)
+SELECT 
+    p.ID AS post_id,
+    COALESCE(CAST(meta1.meta_value AS UNSIGNED), 0) AS post_hide_from_archive,
+    COALESCE(CAST(meta2.meta_value AS FLOAT), 0) AS _user_rate_mean
+FROM 
+    wp_posts p
+LEFT JOIN 
+    wp_postmeta meta1 
+    ON p.ID = meta1.post_id 
+    AND meta1.meta_key = 'post_hide_from_archive'
+LEFT JOIN 
+    wp_postmeta meta2 
+    ON p.ID = meta2.post_id 
+    AND meta2.meta_key = '_user_rate_mean'
+WHERE 
+    p.post_type = 'post'
+    AND p.post_status = 'publish'
+GROUP BY 
+    p.ID;
+```
 
-### Lesson 6: PHP Sessions and Ninja Firewall
+
+### Bonus Lesson 6: PHP Sessions and Ninja Firewall
 
 In this lesson we will learn that php sessions are blocking. This is one reason why WordPress does not use them, and
 using them is generally frowned upon. The popular security plugin Ninja Firewall uses them. We will explore ways to 
