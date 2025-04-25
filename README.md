@@ -7,6 +7,8 @@
 ./setup.sh
 ```
 
+## Lessons
+
 ### Lesson 1: xhprof - limitations and toolset
 
 In this lesson we will cover the use of xhprof, see the limitations and install and use the xhprof toolset I wrote.
@@ -37,7 +39,7 @@ other hand, it will ensure that a locked post, will remain locked as long as you
 Since this will always fire up the whole WordPress bootstrap, this will produce a certain amout of load. While this 
 won't be much, adjusting this will save CPU time, resources and in the end also CO2.
 
-In our example we will differ the heartbeat between the editor, the backend and the frontend.
+In our example, we will differentiate the heartbeat between the editor, the backend and the frontend.
 
 ### Lesson 4: Media Library
 `wp_enqueue_media()` will by default query all attachments to get all months with posts.
